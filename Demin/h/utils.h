@@ -8,8 +8,9 @@
 #define ZERO_CHAR	' '
 
 #define CELL_MASKED_MASK        0x00000100
-#define CELL_VALUE_MASK		0x0000000F
-
+#define CELL_MARKED_MASK 		0x00000200
+#define CELL_INTERO_MASK		0x00000400
+#define CELL_VALUE_MASK			0x0000000F
 
 #define mBitsSet(f,m)   ((f) |= (m))
 #define mBitsClr(f,m)   ((f) &= (~(m)))

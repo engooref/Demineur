@@ -240,28 +240,33 @@ int GetCoordinates(int *pX, int *pY, int nbRow, int nbCol) {
 
 int DiscoverCell(int *pScene, int x, int y, int nbRow, int nbCol) {
 
-	//int value = -5;
+	int k, m;
+	int nbDiscoverCell = 0;
 
+	if(mBitsMsk((*(pScene+y*nbCol+x)), CELL_MASKED_MASK) == 0) return 0;
+	mBitsClr((*(pScene+y*nbCol+x)), CELL_MASKED_MASK);
+	nbDiscoverCell++;
 
-
-
-	switch(mBitsMsk((*(pScene+y*nbCol+x)), CELL_VALUE_MASK))
+	switch(*(pScene+y*nbCol+x))
 	{
-	case 9:
-		for(y = 0; y < nbRow ; y++)
-		{
-			for(x = 0; x < nbCol ; x++)
-			{
-				mBitsClr((*(pScene+y*nbCol+x)), CELL_MASKED_MASK);
+	case MINE_VALUE:
+		return -1;
+		//no break cause return
+
+	case ZERO_VALUE:
+		for(k = -1; k <= 1; k++) {
+			if(( (y + k) < 0 || (y + k) > (nbRow - 1) )) continue;
+
+			for(m = -1; m <= 1; m++) {
+				if(( (x + m) < 0 || (x + m) > (nbCol - 1) )) continue;
+				nbDiscoverCell += DiscoverCell(pScene, (x + m), (y + k), nbRow, nbCol);
 			}
 		}
-		PrintScene(pScene, nbRow, nbCol);
-		return -1;
-	default:
-		mBitsClr((*(pScene+y*nbCol+x)), CELL_MASKED_MASK);
-		PrintScene(pScene, nbRow, nbCol);
+		break;
 
-		return 0;
+	default:
 		break;
 	}
+
+	return nbDiscoverCell;
 }

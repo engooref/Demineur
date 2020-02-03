@@ -1,3 +1,3 @@
-src/utils.o: ../src/utils.c /home/eleve/eclipse-workspace/Demin/h/utils.h
+src/utils.o: ../src/utils.c /home/eleve/git/Demineur/Demin/h/utils.h
 
-/home/eleve/eclipse-workspace/Demin/h/utils.h:
+/home/eleve/git/Demineur/Demin/h/utils.h:

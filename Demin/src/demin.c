@@ -87,6 +87,7 @@ int main(int argc, char*argv[]){
 		{
 		case 0:
 			DiscoverCell(pScene, m, k, nbRow, nbCol);
+			PrintScene(pScene, nbRow, nbCol);
 			break;
 		case 1:
 			break;
@@ -96,7 +97,7 @@ int main(int argc, char*argv[]){
 
 			free(pScene);
 			pScene = NULL;
-			printf("\n===================GOOD BYE===================\n");
+			printf("\/+n===================GOOD BYE===================\n");
 			return EXIT_SUCCESS;
 
 			break;
